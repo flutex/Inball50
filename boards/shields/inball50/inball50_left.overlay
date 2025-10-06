@@ -43,17 +43,11 @@
             ;
     };
 
-    / {
-    zip_xy_transform_90: zip_xy_transform_90 {
-        compatible = "zmk,input-transform";
-        transform = <(INPUT_TRANSFORM_ROTATE_90 | INPUT_TRANSFORM_SWAP_XY | INPUT_TRANSFORM_INVERT_X)>;
-    };
-
-    trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        input-processors = <&zip_xy_transform_90>;
-    };
+ trackball_listener: trackball_listener {
+    compatible = "zmk,input-listener";
+    device = <&trackball>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
+};
 };
 
 &physical_layout0 {
