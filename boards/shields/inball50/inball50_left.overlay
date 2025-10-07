@@ -6,6 +6,10 @@
 #include <input/processors/sensor_rotation.dtsi>
 
 / {
+    aliases {
+        trackball = &trackball;
+    };
+
     chosen {
         zmk,physical-layout = &physical_layout0;
     };
@@ -44,7 +48,7 @@
             ;
     };
 
- input_processors {
+    input_processors {
         sensor_rotation: sensor_rotation {
             compatible = "zmk,input-processor-sensor-rotation";
             #input-processor-cells = <0>;
@@ -52,7 +56,7 @@
         };
     };
 
-trackball_listener: trackball_listener {
+    trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&sensor_rotation>;
@@ -68,16 +72,16 @@ trackball_listener: trackball_listener {
     spi0_default: spi0_default {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 12)>,
-                <NRF_PSEL(SPIM_MOSI, 1, 9)>,
-                <NRF_PSEL(SPIM_MISO, 1, 9)>;
+                    <NRF_PSEL(SPIM_MOSI, 1, 9)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 9)>;
         };
     };
 
     spi0_sleep: spi0_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 12)>,
-                <NRF_PSEL(SPIM_MOSI, 1, 9)>,
-                <NRF_PSEL(SPIM_MISO, 1, 9)>;
+                    <NRF_PSEL(SPIM_MOSI, 1, 9)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 9)>;
             low-power-enable;
         };
     };
@@ -99,4 +103,3 @@ trackball_listener: trackball_listener {
         irq-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
     };
 };
-
