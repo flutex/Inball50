@@ -3,7 +3,6 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include "layouts.dtsi"
-#include <input/processors/sensor_rotation.dtsi>
 
 / {
     chosen {
@@ -48,10 +47,16 @@ input_processors {
         sensor_rotation: sensor_rotation {
             compatible = "zmk,input-processor-sensor-rotation";
             #input-processor-cells = <0>;
-            rotation-angle = <135>;
+            rotation-angle = <30>;
         };
     };
 
+trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+        input-processors = <&sensor_rotation>;
+    };
+};
 
 
 &physical_layout0 {
@@ -92,12 +97,5 @@ input_processors {
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-    };
-};
-
-	trackball_listener: trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        input-processors = <&sensor_rotation>;
     };
 };
