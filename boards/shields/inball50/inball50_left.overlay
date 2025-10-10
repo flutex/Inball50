@@ -47,7 +47,8 @@ input_processors {
         sensor_rotation: sensor_rotation {
             compatible = "zmk,input-processor-sensor-rotation";
             #input-processor-cells = <0>;
-            rotation-angle = <120>;
+            rotation-angle = <150>;
+			filter = <3>; 
         };
     };
 
