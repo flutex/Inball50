@@ -53,7 +53,13 @@ input_processors {
 trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&sensor_rotation>;
+        
+        scroller {
+            compatible = "zmk,input-listener-scroller";
+            layers = <5>;                     // Layer5 でのみ有効
+            input-processors = <&sensor_rotation>;
+            zmk,process-next;
+        };
     };
 };
 
