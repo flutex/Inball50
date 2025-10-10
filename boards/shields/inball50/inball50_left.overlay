@@ -48,7 +48,6 @@ input_processors {
             compatible = "zmk,input-processor-sensor-rotation";
             #input-processor-cells = <0>;
             rotation-angle = <150>;
-			filter = <3>; 
         };
     };
 
