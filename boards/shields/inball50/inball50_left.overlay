@@ -48,27 +48,14 @@ input_processors {
             #input-processor-cells = <0>;
             rotation-angle = <120>;
         };
-
-        scroll_transform: input_transform_scroll {
-            compatible = "zmk,input-processor-trackball-to-hid";
-            #input-processor-cells = <0>;
-            mode = "scroll"; // トラックボールをスクロールに変換
-        };
     };
 
-    trackball_listener: trackball_listener {
+trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&sensor_rotation>; // Layer0: カーソル移動
-    };
-
-    trackball_scroll_listener: trackball_listener_scroll {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-        input-processors = <&scroll_transform>; // Layer2: スクロール
+        input-processors = <&sensor_rotation>;
     };
 };
-
 
 
 &physical_layout0 {
@@ -111,3 +98,4 @@ input_processors {
         irq-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
     };
 };
+
