@@ -42,34 +42,10 @@
             ;
     };
 
-input_processors {
-    sensor_rotation: sensor_rotation {
-        compatible = "zmk,input-processor-sensor-rotation";
-        #input-processor-cells = <0>;
-        rotation-angle = <120>;
-    };
-};
-
 trackball_listener: trackball_listener {
-    compatible = "zmk,input-listener";
-    device = <&trackball>;
-    input-processors = <&sensor_rotation>;
-};
-
-scroller {
-    layers = <2>;
-
-    input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_transform &zip_scroll_scaler>;
-
-    zip_scroll_transform: zip_scroll_transform {
-        compatible = "zmk,input-transform";
-        transform = <TRANSFORM_X_INVERT>;
-    };
-
-    zip_scroll_scaler: zip_scroll_scaler {
-        compatible = "zmk,input-processor-scaler";
-        scale-x = <1>;
-        scale-y = <128>;
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>;
     };
 };
 
