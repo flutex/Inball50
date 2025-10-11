@@ -65,12 +65,12 @@
 
         /* Layer1 が有効なときにスクロールモードに切り替えるオーバーライド */
         scroller {
-            layers = <1>;                                  /* Layer 1 時のみ適用 */
+            layers = <2>;                                  /* Layer 1 時のみ適用 */
             /* 
              * 注意: 親ノードの base processors はオーバーライドがマッチするとスキップされるので、
              * 必要なら sensor_rotation をここでも明示して回転補正を保持する。
              */
-            input-processors = <&sensor_rotation &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 2>;
+            input-processors = <&sensor_rotation &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 128>;
             /* ここで process-next; を付けると他のマッチも続けて評価されます（必要に応じて） */
         };
     };
