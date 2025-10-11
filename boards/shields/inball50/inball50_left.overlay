@@ -70,7 +70,7 @@
              * 注意: 親ノードの base processors はオーバーライドがマッチするとスキップされるので、
              * 必要なら sensor_rotation をここでも明示して回転補正を保持する。
              */
-            input-processors = <&sensor_rotation &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 128>;
+            input-processors = <&sensor_rotation &scroll_invert_x &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 128>;
             /* ここで process-next; を付けると他のマッチも続けて評価されます（必要に応じて） */
         };
     };
