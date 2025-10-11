@@ -42,18 +42,19 @@
         >;
     };
 
- input_processors {
+  input_processors {
         sensor_rotation: sensor_rotation {
             compatible = "zmk,input-processor-sensor-rotation";
             #input-processor-cells = <0>;
-            rotation-angle = <120>;
+            rotation-angle = <30>;
         };
     };
 
-trackball_listener: trackball_listener {
+ trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&sensor_rotation>;
+    };
 };
 
     &physical_layout0 {
