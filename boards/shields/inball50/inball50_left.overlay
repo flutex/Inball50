@@ -1,5 +1,4 @@
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include "layouts.dtsi"
 
@@ -24,12 +23,14 @@
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
         diode-direction = "col2row";
+
         row-gpios = <
             &akdk_d 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN),
             &akdk_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN),
             &akdk_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN),
             &akdk_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)
         >;
+
         col-gpios = <
             &akdk_d 15 GPIO_ACTIVE_HIGH,
             &akdk_d 14 GPIO_ACTIVE_HIGH,
@@ -50,12 +51,12 @@
         zip_x_scaler: zip_x_scaler {
             compatible = "zmk,input-processor-scaler";
             scale-x = <3>;
-            scale-y = <5>;
+            scale-y = <1>;
         };
 
         zip_y_scaler: zip_y_scaler {
             compatible = "zmk,input-processor-scaler";
-            scale-x = <9>;
+            scale-x = <1>;
             scale-y = <10>;
         };
 
@@ -79,11 +80,12 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
         input-processors = <&zip_xy_transform &zip_x_scaler &zip_y_scaler>;
-    };
 
-    scroller: scroller {
-        layers = <5>;
-        input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_transform &zip_scroll_scaler>;
+        scroller {
+            layers = <5>;
+            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_transform &zip_scroll_scaler>;
+            process-next;
+        };
     };
 };
 
