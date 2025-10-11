@@ -56,8 +56,19 @@ trackball_listener: trackball_listener {
         input-processors = <&sensor_rotation>;
 
  scroller {
-        layers = <2>;
-        input-processors = <&zip_xy_to_scroll_mapper>,<&zip_scroll_transform INPUT (TRANSFORM_X_INVERT)>,<&zip_scroll_scaler 1 128>;
+    layers = <2>;
+    
+    input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_transform &zip_scroll_scaler>;
+
+    zip_scroll_transform: zip_scroll_transform {
+        compatible = "zmk,input-transform";
+        transform = <TRANSFORM_X_INVERT>;
+    };
+
+    zip_scroll_scaler: zip_scroll_scaler {
+        compatible = "zmk,input-processor-scaler";
+        scale-x = <1>;
+        scale-y = <128>;
     };
 };
 
