@@ -55,15 +55,10 @@ trackball_listener: trackball_listener {
         device = <&trackball>;
         input-processors = <&sensor_rotation>;
 
- scroller: scroller {
+ scroller {
         layers = <2>;
-        input-processors = <
-            &zip_xy_to_scroll_mapper,
-            &zip_scroll_transform INPUT (TRANSFORM_X_INVERT),
-            &zip_scroll_scaler 1 128
-        >;
-        process-next;
-    }
+        input-processors = <&zip_xy_to_scroll_mapper>,<&zip_scroll_transform INPUT (TRANSFORM_X_INVERT)>,<&zip_scroll_scaler 1 128>;
+    };
 };
 
 
