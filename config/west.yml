@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/sekigon-gonnoc
     - name: hsgw
       url-base: https://github.com/hsgw
+    - name: badjeff
+      url-base: https://github.com/badjeff  
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -18,5 +20,8 @@ manifest:
       remote: hsgw
       revision: main
       path: modules/zmk-feature-sensor_rotation
+    - name: zmk-input-processor-report-rate-limit
+      remote: badjeff
+      revision: main
   self:
     path: config
